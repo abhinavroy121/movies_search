@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          body{
+          background-color: rgb(48, 43, 43);
+      }
+      #navbar{
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  
+}
+
+#innerdiv{
+  text-align:center;
+  border-radius:15px;
+  padding:10px;
+  background-color:black;
+  color:goldenrod;
+}
+    #trending{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-gap:10px;
+    }
+    h1{
+        cursor:pointer;
+  color:wheat;
+    }
+    h3{
+        cursor:pointer;
+  color:wheat;
+ 
+    }
+    #flexdiv{
+  display:flex;
+  justify-content:space-around;
+    }
+    a{
+  text-decoration:none;
+}
+    </style>
+</head>
+<body>
+   <a href="./index.html"> <h3>Home</h3></a>
+    <div id="navbar">
+    <h1>Trending Movies</h1>
+    <div id="trending"></div>
+</body>
+</html>
+
+<script>
+  
+  trendingmovies()
+
+ async function trendingmovies() {
+    try{
+         let res = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=32460cbc810905acd9088d68145fe126&language=en-US&page=1`);
+
+         let data = await res.json();
+         let moviesdata = data.results;
+         console.log(data.results);
+         appendmovie(moviesdata)
+    }
+    catch(error){
+  console.log('error:',error)
+        
+    }
+ }
+ let trending = document.getElementById('trending');
+ function appendmovie(data){
+  trending.innerHTML=null;
+  data.map(function (item){
+      let innerdiv = document.createElement('div');
+      innerdiv.setAttribute('id','innerdiv');
+      let image = document.createElement('img');
+      image.src = `https://www.themoviedb.org/t/p/w220_and_h330_face/${item.poster_path}`;
+      let name = document.createElement('h3');
+      name.innerHTML=`${item.title}`;
+      let  popularity= document.createElement('p');
+      popularity.innerHTML =`Popularity: ${item.popularity}`;
+      let date = document.createElement('p');
+      date.innerHTML = ` Data: ${item.release_date}`;
+      let flexdiv = document.createElement("div");
+         flexdiv.setAttribute('id', 'flexdiv')
+      let rating = document.createElement("p");
+         function rangerate(min,max){
+         return (Math.random()*(max-min)+min).toFixed(1)
+         }
+        let myrating=rangerate(7,10)
+        if(myrating>=8.5){
+          rating.innerHTML= ` &#128077; Ratings: &#9734; ${myrating}/10 `;
+        }
+        else{
+         rating.innerHTML= `Ratings: &#9734; ${myrating}/10 `;
+        }
+      
+        flexdiv.append(rating,date)
+      innerdiv.append(image,name,popularity,flexdiv);
+      trending.append(innerdiv)
+
+  })
+
+ }
+
+
+
+</script>

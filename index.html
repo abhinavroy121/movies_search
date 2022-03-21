@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body{
+          background-color: rgb(48, 43, 43);
+      }
+      #navbar{
+  width: 100%;
+  height: 70px;
+  background-color: black;
+  
+}
+#navbar > div{
+  display:flex;
+  justify-content: space-around;
+  width:30%;
+  margin-left:auto;
+  cursor:pointer;
+  color:wheat;
+}
+a{
+  text-decoration:none;
+  color:antiquewhite;
+}
+h2{
+        cursor:pointer;
+  color:wheat;
+ 
+    }
+#search{
+  /* position:absolute; */
+  width:350px;
+  height:30px;
+  background-color:grey;
+  cursor:pointer;
+  border-radius:5px;
+  
+  
+ 
+}
+/* #searchbutton{
+  background-color:goldenrod;
+  padding:5px 30px;
+  cursor:pointer;
+  margin-left: 5px;
+  border-radius:5px;
+} */
+#movies{
+   display:grid;
+   grid-template-columns: repeat(3,1fr);
+   grid-gap:15px;
+   margin:auto;
+   margin-left:40%;
+   /* width:100%; */
+
+} 
+#maindiv{
+  /* height:600px; */
+  /* background-color: rgb(82, 73, 73); */
+  border-radius:5px;
+  line-height: .5em
+ 
+  
+}
+#innerdiv{
+  text-align:center;
+  border-radius:15px;
+  padding:10px;
+  background-color:black;
+  color:goldenrod
+}
+
+
+#errordiv{
+color:white;
+text-align:center;
+border-radius:15px;
+margin-left:auto;
+}
+#flexdiv{
+  display:flex;
+  justify-content:space-around;
+}#errorh2{
+  margin:auto;
+  font-size:50px;
+}
+
+
+
+#searchbar {
+  display: inline-block;
+  position: relative;
+}
+#searchbar-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  overflow: auto;
+  box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.4);
+}
+#searchbar #searchbar-content {
+  display: block;
+}
+#searchbar-content #innerdivsearch  {
+  display: block;
+  text-decoration: none;
+}
+#searchbar-content #innerdivsearch:hover {
+  color: goldenrod;
+  background-color:lightgoldenrodyellow;
+}
+
+#innerdivsearch{
+  display:flex;
+ 
+  
+}
+#innerdivsearch >img{
+  width:15%;
+  height:2%; 
+  border-radius:5px;
+  margin-right:3px;
+}
+
+span{
+  color:chartreuse;
+}
+  </style>
+</head>
+<body>
+  <a href="./trending.html"><h3>Go to Trending Page</h3></a>
+    <div id="navbar">
+    
+        <div>
+         <h2>Moviefind.com</h2>
+         <span>Click here to refresh/remove</span>
+       </div>
+       
+     </div>
+     
+       
+        
+       <!-- <div id="searchbar"> -->
+
+       <!-- </div> -->
+
+       <div id="searchbar">
+        <input oninput="debounce(main,3000)" id='search' type="text" placeholder="Search Movie" >
+        <div id="searchbar-content">
+        
+        </div>
+      </div>
+      <div id="movies"></div>
+</body>
+</html>
+<script src="./index.js"></script>
